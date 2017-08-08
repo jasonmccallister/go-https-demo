@@ -6,3 +6,9 @@ csr:
 	openssl rsa -passin pass:x -in certs/local.demodomain.com.pass.key -out certs/local.demodomain.com.key && \
 	rm certs/local.demodomain.com.pass.key && \
 	openssl req -new -key certs/local.demodomain.com.key -out certs/local.demodomain.com.csr
+
+docker:
+	docker-compose up -d
+
+image:
+	docker build -t themccallister/go-https-demo .
