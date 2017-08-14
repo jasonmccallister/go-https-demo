@@ -1,3 +1,9 @@
+build:
+	go build .
+
+run: build
+	./go-https-demo
+	
 cert:
 	openssl x509 -req -sha256 -days 365 -in certs/local.demodomain.com.csr -signkey certs/local.demodomain.com.key -out certs/local.demodomain.com.crt
 
