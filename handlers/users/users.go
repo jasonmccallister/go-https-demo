@@ -1,4 +1,4 @@
-package handlers
+package users
 
 import (
 	"encoding/json"
@@ -8,8 +8,8 @@ import (
 	"github.com/themccallister/go-https-demo/services"
 )
 
-// UsersIndexHandler shows all of the users
-func UsersIndexHandler(w http.ResponseWriter, req *http.Request) {
+// Index shows all of the users
+func Index(w http.ResponseWriter, req *http.Request) {
 	u := services.All()
 	userJSON, err := json.Marshal(&u)
 	if err != nil {
