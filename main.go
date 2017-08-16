@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -14,6 +15,8 @@ func main() {
 	port := helpers.EnvStringOr("APP_PORT", "4430")
 	certFile := helpers.EnvStringOr("APP_CERT_FILE", "certs/local.demodomain.com.crt")
 	keyFile := helpers.EnvStringOr("APP_KEY_FILE", "certs/local.demodomain.com.key")
+
+	fmt.Println("Running on port", port)
 
 	r := http.NewServeMux()
 
