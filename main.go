@@ -12,7 +12,7 @@ import (
 
 func main() {
 	// grab the environment vars required
-	port := helpers.EnvStringOr("APP_PORT", "4430")
+	port := helpers.EnvStringOr("APP_PORT", "443")
 	certFile := helpers.EnvStringOr("APP_CERT_FILE", "certs/local.demodomain.com.crt")
 	keyFile := helpers.EnvStringOr("APP_KEY_FILE", "certs/local.demodomain.com.key")
 
