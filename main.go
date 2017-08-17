@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	// bugsnag "github.com/bugsnag/bugsnag-go"
 	homehandler "github.com/themccallister/go-https-demo/handlers"
 	usershandler "github.com/themccallister/go-https-demo/handlers/users"
 	"github.com/themccallister/go-https-demo/helpers"
@@ -15,6 +16,12 @@ func main() {
 	port := helpers.EnvStringOr("APP_PORT", "443")
 	certFile := helpers.EnvStringOr("APP_CERT_FILE", "certs/local.demodomain.com.crt")
 	keyFile := helpers.EnvStringOr("APP_KEY_FILE", "certs/local.demodomain.com.key")
+	// bugsnagKey := helpers.EnvStringOr("BUGSNAG_KEY", "")
+	// if bugsnagKey != "" {
+	// 	bugsnag.Configure(bugsnag.Configuration{
+	// 		APIKey: bugsnagKey,
+	// 	})
+	// }
 
 	fmt.Println("Running on port", port)
 
