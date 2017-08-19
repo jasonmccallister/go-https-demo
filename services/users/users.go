@@ -1,4 +1,4 @@
-package services
+package users
 
 type user struct {
 	First string `json:"first,omitempty"`

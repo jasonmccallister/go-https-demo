@@ -5,12 +5,12 @@ import (
 	"net/http"
 
 	"github.com/themccallister/go-https-demo/response"
-	"github.com/themccallister/go-https-demo/services"
+	"github.com/themccallister/go-https-demo/services/users"
 )
 
 // Index shows all of the users
 func Index(w http.ResponseWriter, req *http.Request) {
-	u := services.All()
+	u := users.All()
 	userJSON, err := json.Marshal(&u)
 	if err != nil {
 		response.JSON(w, []byte("malformed request"), http.StatusBadRequest)
