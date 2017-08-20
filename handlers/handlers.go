@@ -12,6 +12,7 @@ import (
 // function to share logic in this package, you should check for
 // pre-existing code here, if it does not exist you can add it here.
 
+// requirePOST
 func requirePOST(w http.ResponseWriter, r *http.Request) error {
 	if r.Method != "POST" {
 		w.WriteHeader(http.StatusMethodNotAllowed)
