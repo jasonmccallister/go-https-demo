@@ -6,14 +6,17 @@ import (
 	"net/http"
 
 	// bugsnag "github.com/bugsnag/bugsnag-go"
-	homehandler "github.com/themccallister/go-https-demo/handlers"
-	usershandler "github.com/themccallister/go-https-demo/handlers/users"
+
+	"github.com/themccallister/go-https-demo/handlers/home"
+	"github.com/themccallister/go-https-demo/handlers/users"
 	"github.com/themccallister/go-https-demo/helpers/env"
 	"github.com/themccallister/go-https-demo/middleware"
 )
 
+// routes handles the path pattern to a specific HTTP handler
 func routes(r *http.ServeMux) {
-
+	r.HandleFunc("/", home.Index)
+	r.HandleFunc("/v2/users", middleware.RequestLogging(users.Index))
 }
 
 func main() {
@@ -31,11 +34,7 @@ func main() {
 	fmt.Println("Running on port", port)
 
 	r := http.NewServeMux()
-
-	// setup the routing
-	r.HandleFunc("/", homehandler.Index)
-	r.HandleFunc("/v2/users", middleware.RequestLogging(usershandler.Index))
-
+	routes(r)
 	if err := http.ListenAndServeTLS(":"+port, certFile, keyFile, r); err != nil {
 		log.Fatal(err)
 	}
