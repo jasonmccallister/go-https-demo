@@ -9,7 +9,12 @@ import (
 	homehandler "github.com/themccallister/go-https-demo/handlers"
 	usershandler "github.com/themccallister/go-https-demo/handlers/users"
 	"github.com/themccallister/go-https-demo/helpers/env"
+	"github.com/themccallister/go-https-demo/middleware"
 )
+
+func routes(r *http.ServeMux) {
+
+}
 
 func main() {
 	// grab the environment vars required
@@ -29,7 +34,7 @@ func main() {
 
 	// setup the routing
 	r.HandleFunc("/", homehandler.Index)
-	r.HandleFunc("/v2/users", usershandler.Index)
+	r.HandleFunc("/v2/users", middleware.RequestLogging(usershandler.Index))
 
 	if err := http.ListenAndServeTLS(":"+port, certFile, keyFile, r); err != nil {
 		log.Fatal(err)
