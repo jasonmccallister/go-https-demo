@@ -1,5 +1,7 @@
 # Go HTTPS Demo
 
+[![Build Status](https://travis-ci.org/themccallister/go-https-demo.svg?branch=master)](https://travis-ci.org/themccallister/go-https-demo)
+
 This is a quick demo project on generating a local certificate and spinning up a HTTPS server in Go.
 
 ## Generating a Certificate
