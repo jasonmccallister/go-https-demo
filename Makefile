@@ -1,20 +1,34 @@
+# Makefile variables
+DOMAIN=local.demo.com
+
+# CSR variables
+CSR_COUNTRY=US
+CSR_STATE=Virginia
+CSR_CITY=Norfolk
+CSR_ORG=themccallister
+CSR_ORG_UNIT=Engineering
+CSR_COMMON_NAME=${DOMAIN}
+CSR_EMAIL=themccallister@gmail.com
+
 build:
 	go build .
 
-run: build
-	./go-https-demo
-	
 cert:
-	openssl x509 -req -sha256 -days 365 -in certs/local.demodomain.com.csr -signkey certs/local.demodomain.com.key -out certs/local.demodomain.com.crt
+	openssl x509 -req -sha256 -days 365 -in certs/${DOMAIN}.csr \
+	-signkey certs/${DOMAIN}.key -out certs/${DOMAIN}.crt
 
 csr:
-	openssl genrsa -des3 -passout pass:x -out certs/local.demodomain.com.pass.key 2048 && \
-	openssl rsa -passin pass:x -in certs/local.demodomain.com.pass.key -out certs/local.demodomain.com.key && \
-	rm certs/local.demodomain.com.pass.key && \
-	openssl req -new -key certs/local.demodomain.com.key -out certs/local.demodomain.com.csr
+	openssl genrsa -des3 -passout pass:x -out certs/${DOMAIN}.pass.key 2048 && \
+	openssl rsa -passin pass:x -in certs/${DOMAIN}.pass.key -out certs/${DOMAIN}.key && \
+	rm certs/${DOMAIN}.pass.key && \
+	openssl req -new -key certs/${DOMAIN}.key -out certs/${DOMAIN}.csr
 
-docker:
-	docker-compose up -d
+# docker:
+# 	docker-compose up -d
 
-image:
-	docker build -t themccallister/go-https-demo .
+run: build
+	./go-https-demo
+
+#
+# image:
+# 	docker build -t themccallister/go-https-demo .
