@@ -1,5 +1,5 @@
 # Makefile variables
-DOMAIN=local.demo.com
+DOMAIN=local.demodomain.com
 
 # CSR variables
 CSR_COUNTRY=US
@@ -23,12 +23,5 @@ csr:
 	rm certs/${DOMAIN}.pass.key && \
 	openssl req -new -key certs/${DOMAIN}.key -out certs/${DOMAIN}.csr
 
-# docker:
-# 	docker-compose up -d
-
 run: build
 	./go-https-demo
-
-#
-# image:
-# 	docker build -t themccallister/go-https-demo .

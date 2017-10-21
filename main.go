@@ -15,8 +15,12 @@ import (
 
 // routes handles the path pattern to a specific HTTP handler
 func routes(r *http.ServeMux) {
-	r.HandleFunc("/", home.Index)
-	r.HandleFunc("/v2/users", middleware.RequestLogging(users.Index))
+	r.HandleFunc("/", middleware.RequestLogging(
+		home.Index,
+	))
+	r.HandleFunc("/v2/users", middleware.RequestLogging(
+		users.Index,
+	))
 }
 
 func main() {
